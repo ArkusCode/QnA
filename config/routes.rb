@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'question#index'
+  resources :questions, only: %i[index show create new] do
+    resources :answers, only: %i[show create new], shallow: true
+  end
 end
